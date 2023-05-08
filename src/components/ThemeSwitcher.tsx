@@ -3,9 +3,9 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { ThemeContext } from "../context/ThemeProvider";
 
 export default function ThemeSwitcher() {
-    const { currentTheme, setTheme } = (useContext(ThemeContext) as ThemeContext);
+    const { currentTheme, setTheme } = ( useContext(ThemeContext) as ThemeContext );
 
-    const icon = currentTheme === "light" ? <FaMoon color="#fff" /> : <FaSun color="#111" />;
+    const icon = currentTheme === "light" ? <FaMoon color="#111" /> : <FaSun color="#fff" />;
     const themeSwitch = currentTheme === "light" ? "Dark" : "Light";
 
     function switchTheme() {

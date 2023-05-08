@@ -1,0 +1,15 @@
+.controls-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+@media screen and (min-width: 560px) {
+    .controls-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

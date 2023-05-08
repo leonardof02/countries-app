@@ -1,0 +1,16 @@
+@import "../styles/_global.scss";
+
+nav {
+    @include element();
+    border-radius: none;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0;
+
+    button {
+        background-color: transparent;
+        box-shadow: none;
+    }
+}

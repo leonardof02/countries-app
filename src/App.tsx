@@ -1,37 +1,29 @@
-import CountryCard from "./components/CountryCard";
-import ThemeSwitcher from "./components/ThemeSwitcher";
 import ThemeProvider from "./context/ThemeProvider";
-import "./components/CardContainer.scss"
+import AppTitle from "./components/AppTitle";
+import CountryCardContainer from "./components/CountryCardContainer";
+import SearchBar from "./components/SearchBar";
+import { ChangeEvent, useState } from "react";
+import "./App.scss";
+import SelectRegion from "./components/SelectRegion";
 
 function App() {
+    const regions = ["Africa", "America", "Asia", "Europa", "Oceania"];
+
+    const [searchValue, setSearchValue] = useState("");
+    const [filterRegion, setFilterRegion] = useState("");
+
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
+    const handleRegionChange = (e: ChangeEvent<HTMLSelectElement>) => setFilterRegion(e.target.value);
+
     return (
-        
         <ThemeProvider>
-            <div className="main-container">
-                <div className="card-container">
-                    <CountryCard
-                        country="Cuba"
-                        flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-                        capital="La Habana"
-                        population={ 11000000 }
-                        region="America"
-                    />
-                    <CountryCard
-                        country="Cuba"
-                        flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-                        capital="La Habana"
-                        population={ 11000000 }
-                        region="America"
-                    />
-                    <CountryCard
-                        country="Cuba"
-                        flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-                        capital="La Habana"
-                        population={ 11000000 }
-                        region="America"
-                    />
-                </div>
+            <AppTitle></AppTitle>
+            <div className="controls-container">
+                <SearchBar value={searchValue} onChange={handleSearchChange} />
+                <SelectRegion selectOptions={regions} onChange={handleRegionChange} />
             </div>
+            <p>{ filterRegion }</p>
+            <CountryCardContainer />
         </ThemeProvider>
     );
 }

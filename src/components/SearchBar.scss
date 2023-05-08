@@ -1,0 +1,24 @@
+@import "../styles/global";
+
+.search-bar {
+    @include element();
+    cursor: default;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+
+    input {
+        cursor: pointer;
+        padding: 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $text-color;
+        font-size: 16px;
+    }
+}
+

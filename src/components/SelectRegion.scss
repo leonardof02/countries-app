@@ -1,0 +1,20 @@
+@import "../styles/global";
+
+.select-region {
+    @include element();
+    padding: 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+
+    select {
+        width: 100%;
+        @include element();
+        box-shadow: none;
+    }
+}
