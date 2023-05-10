@@ -13,7 +13,7 @@ function App() {
     const [filterRegion, setFilterRegion] = useState("");
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
-    const handleRegionChange = (e: ChangeEvent<HTMLSelectElement>) => setFilterRegion(e.target.value);
+    const handleRegionChange = (newValue: string ) => setFilterRegion( newValue );
 
     return (
         <ThemeProvider>
@@ -22,7 +22,6 @@ function App() {
                 <SearchBar value={searchValue} onChange={handleSearchChange} />
                 <SelectRegion selectOptions={regions} onChange={handleRegionChange} />
             </div>
-            <p>{ filterRegion }</p>
             <CountryCardContainer />
         </ThemeProvider>
     );

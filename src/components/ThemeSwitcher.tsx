@@ -5,8 +5,8 @@ import { ThemeContext } from "../context/ThemeProvider";
 export default function ThemeSwitcher() {
     const { currentTheme, setTheme } = ( useContext(ThemeContext) as ThemeContext );
 
-    const icon = currentTheme === "light" ? <FaMoon color="#111" /> : <FaSun color="#fff" />;
-    const themeSwitch = currentTheme === "light" ? "Dark" : "Light";
+    const icon = currentTheme === "dark" ? <FaMoon color="#fff" /> : <FaSun color="#111" />;
+    const themeSwitch = currentTheme === "dark" ? "Dark" : "Light";
 
     function switchTheme() {
         if (currentTheme === "dark")

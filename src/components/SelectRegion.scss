@@ -1,20 +1,32 @@
 @import "../styles/global";
 
-.select-region {
+.dropdown-container {
     @include element();
-    padding: 15px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 200;
+    min-width: 250px;
+    position: relative;
 
-    &:hover {
-        filter: brightness(1.1);
+    .select-region {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        gap: 15px
     }
 
-    select {
-        width: 100%;
+    .select-options {
         @include element();
-        box-shadow: none;
+        position: absolute;
+        box-sizing: border-box;
+        transform: translateY(5px);
+        width: 100%;
+
+        .option {
+            padding: 10px 15px;
+
+            &:hover {
+                background-color: $app-background;
+            }
+        }
     }
 }

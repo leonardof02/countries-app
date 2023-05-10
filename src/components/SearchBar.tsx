@@ -13,7 +13,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
 
     return (
         <div className="search-bar">
-            <FaSearch color="#fff"></FaSearch>
+            <FaSearch color="#fff" size={20}></FaSearch>
             <input type="text" value={ value } onChange={ handleChange } placeholder="Search for a country..."/>
         </div>
     );
