@@ -6,6 +6,8 @@ import { ChangeEvent, useState } from "react";
 import "./App.scss";
 import SelectRegion from "./components/SelectRegion";
 
+import { getAllCountries } from "./helpers/RESTCountriesRequest";
+
 function App() {
     const regions = ["Africa", "America", "Asia", "Europa", "Oceania"];
 
@@ -14,6 +16,8 @@ function App() {
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
     const handleRegionChange = (newValue: string ) => setFilterRegion( newValue );
+
+    getAllCountries();
 
     return (
         <ThemeProvider>

@@ -1,37 +1,37 @@
-import "./CountryCardContainer.scss"
-import CountryCard from "./CountryCard"
+import "./CountryCardContainer.scss";
+import CountryCard from "./CountryCard";
+import { useEffect, useState } from "react";
+import { Country, getAllCountries } from "../helpers/RESTCountriesRequest";
 
 export default function CountryCardContainer() {
-  return (
-    <div className="country-card-container">
-        <CountryCard
-            country="Cuba"
-            flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-            capital="La Habana"
-            population={ 11000000 }
-            region="America"
-        />
-        <CountryCard
-            country="Cuba"
-            flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-            capital="La Habana"
-            population={ 11000000 }
-            region="America"
-        />
-        <CountryCard
-            country="Cuba"
-            flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-            capital="La Habana"
-            population={ 11000000 }
-            region="America"
-        />
-        <CountryCard
-            country="Cuba"
-            flagUrl="https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg"
-            capital="La Habana"
-            population={ 11000000 }
-            region="America"
-        />
-    </div>
-  )
+    const [countries, setCountries] = useState<null | Country[]>(null);
+
+    useEffect(() => {
+        async function getAllCountries() {
+            try {
+                const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags");
+                const countries: Country[] = await response.json();
+                setCountries(countries);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getAllCountries();
+    }, []);
+
+    return (
+        <div className="country-card-container">
+            { countries && (countries as Country[]).map((country, index) => (
+                <CountryCard
+                    key={index}
+                    country={country.name.common}
+                    flagUrl={country.flags.svg}
+                    capital={country.capital[0]}
+                    population={country.population}
+                    region={country.region}
+                />
+            ))}
+        </div>
+    );
 }
