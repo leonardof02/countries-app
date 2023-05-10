@@ -26,11 +26,32 @@ function App() {
                 console.log(error);
             }
         }
-
         getAllCountries();
     }, []);
 
-    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
+    function findCountry(countryName: string, findString: string) {
+        const name = countryName.toLocaleLowerCase();
+        const search = findString.toLocaleLowerCase();
+        return name.includes( search );
+    }
+    
+    const filteredCountries =
+        (filterRegion === "")
+            ? countries
+            : (countries as Country[]).filter((country) => {
+                  return country.region === filterRegion;
+              });
+
+    const filteredCountriesWithSearch =
+        (searchValue === "")
+            ? filteredCountries
+            : (filteredCountries as Country[]).filter( (country) => {
+                  return findCountry(country.name.common, searchValue);
+              });
+
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
+    }
     const handleRegionChange = (newValue: Region) => setFilterRegion(newValue);
 
     getAllCountries();
@@ -43,7 +64,7 @@ function App() {
                 <SelectRegion selectOptions={regions} onChange={handleRegionChange} />
             </div>
             <CountryCardContainer
-                countries={countries}
+                countries={filteredCountriesWithSearch}
                 filterRegion={filterRegion}
                 searchValue={searchValue}
             />

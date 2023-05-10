@@ -1,7 +1,7 @@
 import "./CountryCardContainer.scss";
 import CountryCard from "./CountryCard";
+import { Country, Region } from "../helpers/RESTCountriesRequest";
 import { useEffect, useState } from "react";
-import { Country, Region, getAllCountries } from "../helpers/RESTCountriesRequest";
 
 interface CountryCardContainerProps {
     countries: Country[] | null;
@@ -10,19 +10,13 @@ interface CountryCardContainerProps {
 }
 
 export default function CountryCardContainer(props: CountryCardContainerProps) {
-    const { countries, filterRegion, searchValue } = props;
-
-    const filteredCountries =
-        filterRegion === ""
-            ? countries
-            : (countries as Country[]).filter((country) => {
-                  return country.region === filterRegion;
-              });
+    
+    const { countries } = props;
 
     return (
         <div className="country-card-container">
             {countries &&
-                (filteredCountries as Country[]).map((country, index) => (
+                (countries as Country[]).map((country, index) => (
                     <CountryCard
                         key={index}
                         country={country.name.common}
