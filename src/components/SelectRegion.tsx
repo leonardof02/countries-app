@@ -1,15 +1,16 @@
 import { MouseEvent, useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import "./SelectRegion.scss";
+import { Region } from "../helpers/RESTCountriesRequest";
 
 interface SelectRegionProps {
-    selectOptions: string[];
-    onChange: (newValue: string) => void;
+    selectOptions: Region[];
+    onChange: (newValue: Region) => void;
 }
 
 export default function SelectRegion({ selectOptions, onChange }: SelectRegionProps) {
     const [hidden, setHidden] = useState<boolean>(false);
-    const [selected, setSelected] = useState<string | null>(null);
+    const [selected, setSelected] = useState<Region>("");
 
     useEffect(() => {
         if (!hidden) window.addEventListener("click", hideMenu);
@@ -17,20 +18,20 @@ export default function SelectRegion({ selectOptions, onChange }: SelectRegionPr
     }, [hidden]);
 
     function handleClick(e: MouseEvent<HTMLDivElement>) {
-        const selected = (e.target as HTMLDivElement).innerText;
+        const selected: Region = (e.target as HTMLDivElement).innerText as Region;
         setSelected(selected);
         onChange(selected);
     }
 
     const toggleHidden = (e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
-        console.log("CLick");
-        console.log(hidden);
         setHidden(!hidden);
-        console.log(hidden);
     };
     const hideMenu = () => setHidden(false);
-    const deleteSelection = () => setSelected(null);
+    const deleteSelection = () => {
+        setSelected("");
+        onChange("");
+    };
 
     return (
         <div className="dropdown-container">
@@ -40,15 +41,17 @@ export default function SelectRegion({ selectOptions, onChange }: SelectRegionPr
             </div>
             {hidden && (
                 <div className="select-options">
-                    <div className={ "option " + ( (selected === null ? "selected" : "" ) ) }
-                    onClick={deleteSelection}>
+                    <div
+                        className={"option " + (selected === "" ? "selected" : "")}
+                        onClick={deleteSelection}
+                    >
                         Filter by region...
                     </div>
                     {selectOptions.map((value) => (
                         <div
                             key={value}
                             onClick={handleClick}
-                            className={ "option " + ( (selected === value) ? "selected" : "" )}
+                            className={"option " + (selected === value ? "selected" : "")}
                         >
                             {value}
                         </div>

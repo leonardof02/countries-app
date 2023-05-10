@@ -3,7 +3,7 @@ export interface Country {
     flags: CountryFlag
     population: number,
     capital: Capital
-    region: "Europe" | "Asia" | "America" | "Europa" | "Oceania";
+    region: Region;
 }
 
 export interface CountryName {
@@ -25,6 +25,7 @@ export interface nameInfo {
     common: string,
 }
 
+export type Region = "" | "Africa" | "Europe" | "Asia" | "Americas" | "Oceania";
 export type Capital = string[];
 
 export async function getAllCountries() {

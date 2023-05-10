@@ -8,7 +8,7 @@ interface CountryCardProps {
     capital: string;
 }
 
-export default function CountryCard(props: CountryCardProps) {``
+export default function CountryCard(props: CountryCardProps) {
     const { flagUrl, country, population, region, capital } = props;
 
     function processPopulation( population: number ): string {
