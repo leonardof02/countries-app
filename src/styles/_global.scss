@@ -41,10 +41,15 @@ body {
 
 button {
     @include element();
-    padding: 5px 15px;
+    padding: 5px 22px;
     display: flex;
     gap: 5px;
     align-items: center;
+    justify-content: center;
     font-weight: 600;
     font-size: 15px;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
 }

@@ -1,0 +1,37 @@
+@import "../styles/global";
+
+.country-info-container {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .navigation {
+        max-width: 200px;
+    }
+
+    .img-container {
+        width: 100%;
+        
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .border-countries-container {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        button {
+            max-width: 100%;
+            padding: 10px;
+        }
+    }
+    
+    p {
+        margin: 5px 10px;
+    }
+
+}

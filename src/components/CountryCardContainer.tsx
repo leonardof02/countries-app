@@ -1,7 +1,6 @@
 import "./CountryCardContainer.scss";
 import CountryCard from "./CountryCard";
 import { Country, Region } from "../helpers/RESTCountriesRequest";
-import { useEffect, useState } from "react";
 
 interface CountryCardContainerProps {
     countries: Country[] | null;
