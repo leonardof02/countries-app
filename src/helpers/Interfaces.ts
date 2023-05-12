@@ -26,7 +26,7 @@ export interface CountryName {
     common: string,
     official: string,
     nativeName: {
-        [id: string]: nameInfo;
+        [id: string]: NameInfo;
     }
 }
 
@@ -36,7 +36,7 @@ export interface CountryFlag {
     alt: string
 }
 
-export interface nameInfo {
+export interface NameInfo {
     official: string,
     common: string,
 }

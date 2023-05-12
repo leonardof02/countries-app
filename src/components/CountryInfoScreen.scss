@@ -1,5 +1,9 @@
 @import "../styles/global";
 
+.navigation {
+    margin: 20px;
+}
+
 .country-info-container {
     margin: 1.5rem;
     display: flex;
@@ -10,12 +14,21 @@
         max-width: 200px;
     }
 
+    .info {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
     .img-container {
-        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
         
         img {
             width: 100%;
             object-fit: contain;
+            max-width: 500px;
         }
     }
     
@@ -25,5 +38,24 @@
 
     b {
         margin-right: 10px;
+    }
+}
+
+@media screen and ( min-width: 700px ) { 
+    .country-info-screen-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+    };
+
+    .country-info-container {
+        flex-direction: row;
+    }
+
+    .img-container {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

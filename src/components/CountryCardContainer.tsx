@@ -17,12 +17,11 @@ export default function CountryCardContainer(props: CountryCardContainerProps) {
         <div className="country-card-container">
             {countries &&
                 (countries as Country[]).map((country, index) => (
-                    <Link to={`/country/${ country.name.common.toLocaleLowerCase() }`}>
+                    <Link to={`/country/${ country.name.common.toLocaleLowerCase().replace(/\s+/g, "%20") }`} key={index}>
                         <CountryCard
-                            key={index}
                             country={country.name.common}
                             flagUrl={country.flags.svg}
-                            capital={country.capital[0]}
+                            capital={country.capital.join(" ")}
                             population={country.population}
                             region={country.region}
                         />
