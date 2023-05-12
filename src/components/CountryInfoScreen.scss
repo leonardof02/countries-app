@@ -18,20 +18,12 @@
             object-fit: contain;
         }
     }
-
-    .border-countries-container {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
-
-        button {
-            max-width: 100%;
-            padding: 10px;
-        }
-    }
     
     p {
         margin: 5px 10px;
     }
 
+    b {
+        margin-right: 10px;
+    }
 }

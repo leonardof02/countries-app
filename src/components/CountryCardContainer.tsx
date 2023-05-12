@@ -1,6 +1,7 @@
 import "./CountryCardContainer.scss";
 import CountryCard from "./CountryCard";
-import { Country, Region } from "../helpers/RESTCountriesRequest";
+import { Country, Region } from "../helpers/Interfaces";
+import { Link } from "react-router-dom";
 
 interface CountryCardContainerProps {
     countries: Country[] | null;
@@ -16,14 +17,16 @@ export default function CountryCardContainer(props: CountryCardContainerProps) {
         <div className="country-card-container">
             {countries &&
                 (countries as Country[]).map((country, index) => (
-                    <CountryCard
-                        key={index}
-                        country={country.name.common}
-                        flagUrl={country.flags.svg}
-                        capital={country.capital[0]}
-                        population={country.population}
-                        region={country.region}
-                    />
+                    <Link to={`/country/${ country.name.common.toLocaleLowerCase() }`}>
+                        <CountryCard
+                            key={index}
+                            country={country.name.common}
+                            flagUrl={country.flags.svg}
+                            capital={country.capital[0]}
+                            population={country.population}
+                            region={country.region}
+                        />
+                    </Link>
                 ))}
         </div>
     );

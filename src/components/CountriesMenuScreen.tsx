@@ -1,27 +1,26 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import AppTitle from "./AppTitle";
 import SearchBar from "./SearchBar";
 import SelectRegion from "./SelectRegion";
 import CountryCardContainer from "./CountryCardContainer";
 
-import { Country, Region, getAllCountries } from "../helpers/RESTCountriesRequest";
+import { Country, Region } from "../helpers/Interfaces";
 
 import "./CountriesMenuScreen.scss";
 
-
 export default function CountriesMenuScreen() {
-    
+
     const regions: Region[] = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
     const [searchValue, setSearchValue] = useState("");
     const [filterRegion, setFilterRegion] = useState<Region>("");
-    const [countries, setCountries] = useState<Country[] | null>(null);
 
+    const [countries, setCountries] = useState<null | Country[]>(null);
+    
     useEffect(() => {
         async function getAllCountries() {
             try {
                 const response = await fetch(
-                    "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags"
+                    "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,flags,tld,currencies,languages"
                 );
                 const countries: Country[] = await response.json();
                 setCountries(countries);
@@ -31,6 +30,7 @@ export default function CountriesMenuScreen() {
         }
         getAllCountries();
     }, []);
+    
 
     function findCountry(countryName: string, findString: string) {
         const name = countryName.toLocaleLowerCase();
@@ -56,12 +56,8 @@ export default function CountriesMenuScreen() {
         setSearchValue(e.target.value);
     }
     const handleRegionChange = (newValue: Region) => setFilterRegion(newValue);
-
-    getAllCountries();
-
     
     return <>
-        <AppTitle></AppTitle>
         <div className="controls-container">
             <SearchBar value={searchValue} onChange={handleSearchChange} />
             <SelectRegion selectOptions={regions} onChange={handleRegionChange} />

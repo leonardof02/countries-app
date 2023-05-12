@@ -1,3 +1,4 @@
+import { numberToText } from "../helpers/numberToText";
 import "./CountryCard.scss"
 
 interface CountryCardProps {
@@ -10,12 +11,6 @@ interface CountryCardProps {
 
 export default function CountryCard(props: CountryCardProps) {
     const { flagUrl, country, population, region, capital } = props;
-
-    function processPopulation( population: number ): string {
-        const populationStr = population.toString();
-        return populationStr;
-    }
-
     return (
         <div className="country-card">
             <div className="img-container">
@@ -23,7 +18,7 @@ export default function CountryCard(props: CountryCardProps) {
             </div>
             <div className="country-info">
                 <h4>{country}</h4>
-                <p><b>Population: </b>{ processPopulation( population ) }</p>
+                <p><b>Population: </b>{ numberToText(population) }</p>
                 <p><b>Region: </b>{ region }</p>
                 <p><b>Capital: </b>{ capital }</p>
             </div>

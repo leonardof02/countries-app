@@ -39,6 +39,10 @@ body {
     color: $text-color;
 }
 
+a {
+    text-decoration: none;
+}
+
 button {
     @include element();
     padding: 5px 22px;

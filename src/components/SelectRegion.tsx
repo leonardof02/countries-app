@@ -1,7 +1,7 @@
 import { MouseEvent, useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import "./SelectRegion.scss";
-import { Region } from "../helpers/RESTCountriesRequest";
+import { Region } from "../helpers/Interfaces";
 
 interface SelectRegionProps {
     selectOptions: Region[];

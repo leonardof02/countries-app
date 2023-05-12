@@ -4,6 +4,22 @@ export interface Country {
     population: number,
     capital: Capital
     region: Region;
+    subregion: string,
+    tld: string[],
+    currencies: Currencies,
+    borders: string[]
+    languages: Languages
+}
+
+export interface Currencies {
+    [id: string]: {
+        name: string,
+        symbol: string
+    }
+}
+
+export interface Languages {
+    [id: string]: string
 }
 
 export interface CountryName {
@@ -27,13 +43,3 @@ export interface nameInfo {
 
 export type Region = "" | "Africa" | "Europe" | "Asia" | "Americas" | "Oceania";
 export type Capital = string[];
-
-export async function getAllCountries() {
-    try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags");
-        const countries: Country[] = await response.json();
-        return countries;
-    } catch( error ) {
-        console.log( error );
-    }
-}

@@ -1,14 +1,16 @@
-import CountriesMenuScreen from "./components/CountriesMenuScreen";
-import CountryInfoScreen from "./components/CountryInfoScreen";
+import { Outlet } from "react-router-dom";
+
 import ThemeProvider from "./context/ThemeProvider";
+import AppTitle from "./components/AppTitle";
 
 function App() {
-    
     return (
-        <ThemeProvider>
-            {/* <CountriesMenuScreen></CountriesMenuScreen> */}
-            <CountryInfoScreen></CountryInfoScreen>
-        </ThemeProvider>
+        <>
+            <ThemeProvider>
+                <AppTitle />
+                <Outlet />
+            </ThemeProvider>
+        </>
     );
 }
 

@@ -1,10 +1,34 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './styles/_global.scss'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.tsx";
+import "./styles/_global.scss";
+import CountryInfoScreen from "./components/CountryInfoScreen.tsx";
+import CountriesMenuScreen from "./components/CountriesMenuScreen.tsx";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import { loader as countryLoader } from "./components/CountryInfoScreen.tsx";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            {
+
+                path: "/country/:countryName",
+                element: <CountryInfoScreen />,
+                loader: countryLoader
+            },
+            {
+                path: "/",
+                element: <CountriesMenuScreen />
+            }
+        ]
+    },
+]);
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+);
