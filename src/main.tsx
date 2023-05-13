@@ -6,7 +6,7 @@ import "./styles/_global.scss";
 import CountryInfoScreen from "./components/CountryInfoScreen.tsx";
 import CountriesMenuScreen from "./components/CountriesMenuScreen.tsx";
 
-import { loader as countryLoader } from "./components/CountryInfoScreen.tsx";
+import { countryLoader } from "./helpers/loaders/countryLoader.ts";
 
 const router = createBrowserRouter([
     {

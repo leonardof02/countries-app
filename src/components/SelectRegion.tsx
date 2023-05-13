@@ -37,7 +37,7 @@ export default function SelectRegion({ selectOptions, onChange }: SelectRegionPr
         <div className="dropdown-container">
             <div className="select-region" onClick={toggleHidden}>
                 <div>{selected ? selected : "Filter by Region..."}</div>
-                <IoIosArrowDown color="#fff" />
+                <IoIosArrowDown/>
             </div>
             {hidden && (
                 <div className="select-options">
