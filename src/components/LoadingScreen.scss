@@ -1,0 +1,35 @@
+@import "../styles/global";
+
+.loading-screen {
+    width: 100%;
+    min-height: calc(100vh - 63px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon-container {
+            margin: 10px;
+            animation: rotate 3s both infinite;
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+      color: rgb(59, 59, 255);
+    }
+    50% {
+        transform: rotate(360deg);
+        color: $text-color;
+    }
+    100% {
+        transform: rotate(calc(360deg + 360deg));
+        color: rgb(59, 59, 255);
+    }
+  }
