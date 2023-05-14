@@ -7,15 +7,15 @@ import CountryCardContainer from "./CountryCardContainer";
 import { Country, Region } from "../helpers/Interfaces";
 
 import "./CountriesMenuScreen.scss";
+import LoadingScreen from "./LoadingScreen";
 
 export default function CountriesMenuScreen() {
-
     const regions: Region[] = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
     const [searchValue, setSearchValue] = useState("");
     const [filterRegion, setFilterRegion] = useState<Region>("");
-
+    const [isLoading, setLoading] = useState<boolean>(true);
     const [countries, setCountries] = useState<null | Country[]>(null);
-    
+
     useEffect(() => {
         async function getAllCountries() {
             try {
@@ -24,48 +24,55 @@ export default function CountriesMenuScreen() {
                 );
                 const countries: Country[] = await response.json();
                 setCountries(countries);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
         }
         getAllCountries();
     }, []);
-    
 
     function findCountry(countryName: string, findString: string) {
         const name = countryName.toLocaleLowerCase();
         const search = findString.toLocaleLowerCase();
-        return name.includes( search );
+        return name.includes(search);
     }
-    
+
     const filteredCountries =
-        (filterRegion === "")
+        filterRegion === ""
             ? countries
             : (countries as Country[]).filter((country) => {
                   return country.region === filterRegion;
               });
 
     const filteredCountriesWithSearch =
-        (searchValue === "")
+        searchValue === ""
             ? filteredCountries
-            : (filteredCountries as Country[]).filter( (country) => {
+            : (filteredCountries as Country[]).filter((country) => {
                   return findCountry(country.name.common, searchValue);
               });
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
-    }
+    };
     const handleRegionChange = (newValue: Region) => setFilterRegion(newValue);
-    
-    return <>
-        <div className="controls-container">
-            <SearchBar value={searchValue} onChange={handleSearchChange} />
-            <SelectRegion selectOptions={regions} onChange={handleRegionChange} />
-        </div>
-        <CountryCardContainer
-            countries={filteredCountriesWithSearch}
-            filterRegion={filterRegion}
-            searchValue={searchValue}
-        />
-    </>
+
+    return (
+        <>
+            {isLoading && <LoadingScreen />}
+            {!isLoading && (
+                <>
+                    <div className="controls-container">
+                        <SearchBar value={searchValue} onChange={handleSearchChange} />
+                        <SelectRegion selectOptions={regions} onChange={handleRegionChange} />
+                    </div>
+                    <CountryCardContainer
+                        countries={filteredCountriesWithSearch}
+                        filterRegion={filterRegion}
+                        searchValue={searchValue}
+                    />
+                </>
+            )}
+        </>
+    );
 }

@@ -6,9 +6,9 @@ import CountryDetail from "./CountryDetail";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function CountryInfoScreen() {
-    const countryData = useLoaderData() as Country[];
-    const country = countryData[0];
 
+    const countryData = useLoaderData() as Country[];
+    
     return (
         <>
             <div className="navigation">
@@ -19,7 +19,7 @@ export default function CountryInfoScreen() {
                     </button>
                 </Link>
             </div>
-            {country && <CountryDetail country={country} />}
+            { countryData && <CountryDetail country={countryData[0]} />}
         </>
     );
 }
